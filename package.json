@@ -1,0 +1,36 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hocuspocus/extension-database": "^2.13.7",
+    "@hocuspocus/extension-logger": "^2.13.7",
+    "@hocuspocus/server": "^2.13.7",
+    "@hocuspocus/transformer": "^2.13.7",
+    "@supabase/supabase-js": "^2.46.1",
+    "@tiptap/extension-character-count": "^2.9.1",
+    "@tiptap/extension-collaboration": "^2.9.1",
+    "@tiptap/extension-collaboration-cursor": "^2.9.1",
+    "@tiptap/extension-highlight": "^2.9.1",
+    "@tiptap/extension-image": "^2.9.1",
+    "@tiptap/extension-link": "^2.9.1",
+    "@tiptap/extension-list-keymap": "^2.9.1",
+    "@tiptap/extension-placeholder": "^2.9.1",
+    "@tiptap/extension-table": "^2.9.1",
+    "@tiptap/extension-table-cell": "^2.9.1",
+    "@tiptap/extension-table-header": "^2.9.1",
+    "@tiptap/extension-table-row": "^2.9.1",
+    "@tiptap/extension-typography": "^2.9.1",
+    "@tiptap/html": "^2.9.1",
+    "@tiptap/starter-kit": "^2.9.1",
+    "dotenv": "^16.4.5"
+  }
+}
