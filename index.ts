@@ -1,11 +1,13 @@
+import express from "express";
+import expressWebsockets from "express-ws";
+import dotenv from "dotenv";
+import * as Y from "yjs";
 import { Hocuspocus } from "@hocuspocus/server";
 import { Logger } from "@hocuspocus/extension-logger";
 import { Database } from "@hocuspocus/extension-database";
 import { createClient } from "@supabase/supabase-js";
 import { TiptapTransformer } from "@hocuspocus/transformer";
 import { generateHTML, generateJSON } from "@tiptap/html";
-import dotenv from "dotenv";
-import * as Y from "yjs";
 import StarterKit from "@tiptap/starter-kit";
 import CharacterCount from "@tiptap/extension-character-count";
 import Collaboration from "@tiptap/extension-collaboration";
@@ -104,4 +106,28 @@ const server = new Hocuspocus({
   ],
 });
 
-server.listen();
+// Setup your express instance using the express-ws extension
+const { app } = expressWebsockets(express());
+
+// A basic http route
+app.get("/", (request, response) => {
+  response.send("Hello World!");
+});
+
+// Add a websocket route for Hocuspocus
+// You can set any contextual data like in the onConnect hook
+// and pass it to the handleConnection method.
+app.ws("/collaboration", (websocket, request) => {
+  // example context
+  const context = {
+    user: {
+      id: 1234,
+      name: "Jane",
+    },
+  };
+
+  server.handleConnection(websocket, request, context);
+});
+
+// Start the server
+app.listen(1234, () => console.log("Listening on http://127.0.0.1:1234"));
