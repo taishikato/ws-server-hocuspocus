@@ -58,6 +58,14 @@ const server = new Hocuspocus({
   async onDisconnect(data) {
     console.log("Client disconnected:", data.context);
   },
+  async onAuthenticate(data) {
+    const { token } = data;
+
+    const { data: userData } = await supabase.auth.getUser(token);
+    if (!userData.user) {
+      throw new Error("Not authorized!");
+    }
+  },
   extensions: [
     new Logger(),
     new Database({
