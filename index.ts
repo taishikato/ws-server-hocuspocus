@@ -86,13 +86,12 @@ const server = new Hocuspocus({
 
         // Then convert JSON to HTML
         const html = generateHTML(json, extensions);
-        console.log({ html });
 
-        // console.log({ stringg: props.state.toString("utf-8") });
-        // const html = generateHTML(props.state, extensions);
-        // console.log({
-        //   content: html,
-        // });
+        const { error } = await supabase
+          .from("documents")
+          .update({ content: html })
+          .match({ id: props.documentName })
+          .single();
       },
     }),
   ],
