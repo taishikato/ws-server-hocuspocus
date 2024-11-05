@@ -73,7 +73,6 @@ const server = new Hocuspocus({
           if (error) throw error;
 
           const json = generateJSON(data.content, extensions);
-          console.log("Converted JSON:", json);
 
           return Y.encodeStateAsUpdate(
             TiptapTransformer.toYdoc(json, "default", extensions)
