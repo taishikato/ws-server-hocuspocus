@@ -95,35 +95,6 @@ const server = new Hocuspocus({
       },
     }),
   ],
-  // You can also access the fetched data in other hooks
-  // async onLoadDocument({ document, context, documentName }) {
-  //   // The document is already initialized with data from fetch
-  //   console.log("Document loaded:", documentName);
-
-  //   const { data, error } = await supabase
-  //     .from("documents")
-  //     .select("content")
-  //     .match({ id: documentName })
-  //     .single();
-
-  //   const json = generateJSON(data?.content, extensions);
-
-  //   const ydoc = TiptapTransformer.toYdoc(
-  //     // the actual JSON
-  //     json,
-  //     // the `field` you’re using in Tiptap. If you don’t know what that is, use 'default'.
-  //     "default",
-  //     // The Tiptap extensions you’re using. Those are important to create a valid schema.
-  //     extensions
-  //   );
-
-  //   return ydoc;
-  // },
-  // async onStoreDocument(props) {
-  //   console.log("onStoreDocument triggered");
-  // console.log({ props });
-  // },
 });
 
-// … and run it!
 server.listen();
