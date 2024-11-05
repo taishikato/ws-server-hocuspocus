@@ -3,8 +3,9 @@ import { Logger } from "@hocuspocus/extension-logger";
 import { Database } from "@hocuspocus/extension-database";
 import { createClient } from "@supabase/supabase-js";
 import { TiptapTransformer } from "@hocuspocus/transformer";
-import { generateHTML } from "@tiptap/html";
+import { generateHTML, generateJSON } from "@tiptap/html";
 import dotenv from "dotenv";
+import * as Y from "yjs";
 import StarterKit from "@tiptap/starter-kit";
 import CharacterCount from "@tiptap/extension-character-count";
 import Collaboration from "@tiptap/extension-collaboration";
@@ -73,7 +74,13 @@ const server = new Hocuspocus({
           console.log({ data });
 
           if (error) throw error;
-          return data?.content || null;
+
+          const json = generateJSON(data.content, extensions);
+          console.log("Converted JSON:", json);
+
+          return Y.encodeStateAsUpdate(
+            TiptapTransformer.toYdoc(json, "default", extensions)
+          );
         } catch (error) {
           console.error("Error fetching document:", error);
           return null;
