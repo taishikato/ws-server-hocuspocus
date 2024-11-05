@@ -58,13 +58,10 @@ const server = new Hocuspocus({
   async onDisconnect(data) {
     console.log("Client disconnected:", data.context);
   },
-  async onChange(data) {
-    console.log("onChange!");
-  },
   extensions: [
     new Logger(),
     new Database({
-      //   // Called when a document is first loaded
+      // Called when a document is first loaded
       fetch: async (props) => {
         try {
           const { data, error } = await supabase
@@ -72,8 +69,6 @@ const server = new Hocuspocus({
             .select("content")
             .match({ id: props.documentName })
             .single();
-
-          console.log({ data });
 
           if (error) throw error;
 
@@ -89,7 +84,6 @@ const server = new Hocuspocus({
         }
       },
       store: async (props) => {
-        console.log("inside store");
         // Convert Y.doc state to JSON first
         const json = TiptapTransformer.fromYdoc(props.document, "default");
 
